@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "@fontsource-variable/martian-mono/wdth.css";
+import "@fontsource-variable/bodoni-moda/opsz.css";
+import "@fontsource-variable/bodoni-moda/opsz-italic.css";
 import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/400-italic.css";
 import "@fontsource/ibm-plex-sans/600.css";

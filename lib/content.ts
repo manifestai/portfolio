@@ -489,3 +489,88 @@ export const products: Product[] = [
 ];
 
 export const t = (v: T, lang: Lang) => v[lang];
+
+/* Hero motion: one real line per product becomes a wireframe, the tokens paint it, the screen appears. */
+export type BoardItem = {
+  slug: string;
+  name: string;
+  file: string;
+  line: T;
+  palette: [string, string, string, string];
+  wire: "app" | "appDark" | "landing";
+  shot: string;
+};
+
+export const board = {
+  label: { en: "From text to product", pt: "Do texto ao produto" },
+  pause: { en: "Pause animation", pt: "Pausar animação" },
+  play: { en: "Play animation", pt: "Retomar animação" },
+  steps: [
+    { en: "Text", pt: "Texto" },
+    { en: "Wireframe", pt: "Wireframe" },
+    { en: "Tokens", pt: "Tokens" },
+    { en: "Product", pt: "Produto" },
+  ],
+  items: [
+    {
+      slug: "salto",
+      name: "Portal Salto",
+      file: "PRODUCT.md",
+      line: {
+        en: "Wants to understand in a few seconds: where we are, what was decided, what depends on me.",
+        pt: "Quer entender em poucos segundos: onde estamos, o que foi decidido, o que depende de mim.",
+      },
+      palette: ["#5f6a55", "#f6faf1", "#c9f2c0", "#3a3f33"],
+      wire: "app",
+      shot: "/shots/salto/overview.webp",
+    },
+    {
+      slug: "yoji",
+      name: "Yoji",
+      file: "CLAUDE.md",
+      line: {
+        en: "Stop being the receptionist of your own business.",
+        pt: "Pare de ser recepcionista do seu próprio negócio.",
+      },
+      palette: ["#faf9f3", "#1b1c19", "#25d366", "#e9e8e2"],
+      wire: "landing",
+      shot: "/shots/yoji/hero.webp",
+    },
+    {
+      slug: "minharfp",
+      name: "minhaRFP",
+      file: "CLAUDE.md",
+      line: {
+        en: "AI is a paid add-on. The product works without it.",
+        pt: "A IA é um add-on pago. O produto funciona sem ela.",
+      },
+      palette: ["#000000", "#f9f9f9", "#6d28d9", "#e2e2e2"],
+      wire: "appDark",
+      shot: "/shots/minharfp/dashboard.webp",
+    },
+    {
+      slug: "graupleno",
+      name: "GrauPleno",
+      file: "CLAUDE.md",
+      line: {
+        en: "Priority = (100 - SCI) × 0.4 + employees × 0.3 + red flags × 0.2 + shifts × 0.1",
+        pt: "Prioridade = (100 - SCI) × 0.4 + funcionários × 0.3 + red flags × 0.2 + turnos × 0.1",
+      },
+      palette: ["#ffffff", "#0f2140", "#f26a1b", "#eef0f3"],
+      wire: "landing",
+      shot: "/shots/graupleno/hero.webp",
+    },
+    {
+      slug: "sheenshot",
+      name: "Sheenshot",
+      file: "README.md",
+      line: {
+        en: "Nothing is uploaded: images are read and drawn in the browser itself.",
+        pt: "Nada é enviado: as imagens são lidas e desenhadas no próprio navegador.",
+      },
+      palette: ["#16161c", "#24242c", "#a598ff", "#e9e6ff"],
+      wire: "appDark",
+      shot: "/shots/sheenshot/editor.webp",
+    },
+  ] as BoardItem[],
+};

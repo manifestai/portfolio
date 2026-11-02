@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ui, products, t, type Lang } from "@/lib/content";
 import { Header, TitleBlock, Footer } from "@/components/Chrome";
+import HeroBoard from "@/components/HeroBoard";
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: l } = await params;
@@ -11,6 +12,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <main id="main">
         <section className="hero">
           <h1 className="h-hero">{t(ui.heroTitle, lang)}</h1>
+          <HeroBoard lang={lang} />
           <div className="hero-foot">
             <p className="lede">{t(ui.heroBody, lang)}</p>
             <TitleBlock lang={lang} sheet="00" title={lang === "pt" ? "índice" : "index"} />

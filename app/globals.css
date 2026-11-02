@@ -110,7 +110,7 @@ a:hover { color: #fff; text-decoration-color: var(--accent); }
 .h-hero {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(2.6rem, 6.4vw, 5.4rem); line-height: 1.02; letter-spacing: -0.025em;
-  margin: 0; max-width: 17ch; text-wrap: balance;
+  margin: 0 0 -0.12em; padding-bottom: 0.12em; max-width: 17ch; text-wrap: balance;
   background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.62));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }

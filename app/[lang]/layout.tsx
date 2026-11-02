@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "@fontsource-variable/bodoni-moda/opsz.css";
-import "@fontsource-variable/bodoni-moda/opsz-italic.css";
-import "@fontsource/ibm-plex-sans/400.css";
-import "@fontsource/ibm-plex-sans/400-italic.css";
-import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/neuton/400.css";
+import "@fontsource/neuton/400-italic.css";
+import "@fontsource/neuton/700.css";
+import "@fontsource-variable/inter/index.css";
 import "../globals.css";
 import { langs, type Lang } from "@/lib/content";
 

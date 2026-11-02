@@ -10,9 +10,9 @@
   --rule-soft: rgba(234, 242, 245, 0.14);
   --red: #ff7155;
 
-  --serif: "Bodoni Moda Variable", "Bodoni Moda", Didot, "Bodoni 72", serif;
+  --serif: "Neuton", Georgia, "Times New Roman", serif;
   --code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --sans: "Inter Variable", "Inter", system-ui, sans-serif;
 
   --gutter: 16px;
   --measure: 66ch;
@@ -103,8 +103,8 @@ a:hover { color: #fff; }
 }
 .h-section {
   font-family: var(--serif);
-  font-weight: 500;
-  font-size: 1.25rem;
+  font-weight: 400;
+  font-size: 1.45rem;
   letter-spacing: 0;
   margin: 0 0 24px;
   padding-bottom: 12px;
@@ -130,14 +130,14 @@ p { margin: 0 0 1em; }
   width: 2em; height: 2em;
   border: 1.5px solid var(--red); border-radius: 50%;
   color: var(--red);
-  font-family: var(--serif); font-size: 0.9rem; font-weight: 600;
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
 }
 
 /* Hero */
 .hero { padding: clamp(56px, 10vw, 128px) 0 64px; }
 .case-head { padding: 40px 0 56px; }
 .crumb { font-size: 0.9rem; margin-bottom: 40px; color: var(--ink-2); }
-.case-kind { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--ink-2); margin: 16px 0 0; }
+.case-kind { font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--ink-2); margin: 16px 0 0; }
 .hero-foot {
   margin-top: clamp(40px, 6vw, 72px);
   display: grid;
@@ -156,18 +156,18 @@ p { margin: 0 0 1em; }
 }
 .titleblock th, .titleblock td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; vertical-align: top; }
 .titleblock th { font-weight: 400; color: var(--ink-2); width: 6.5em; }
-.titleblock td { font-family: var(--serif); font-size: 0.92rem; }
-.titleblock .tb-sign { color: var(--red); font-weight: 700; font-style: italic; font-size: 1.05rem; }
+.titleblock td { font-family: var(--sans); font-size: 0.82rem; }
+.titleblock .tb-sign { font-family: var(--serif); color: var(--red); font-weight: 700; font-size: 1.15rem; }
 
 .meta { margin: 32px 0 0; display: grid; gap: 10px; max-width: var(--measure); }
 .meta div { display: grid; grid-template-columns: 7em 1fr; gap: 12px; }
 .meta dt { color: var(--ink-2); font-size: 0.9rem; }
-.meta dd { margin: 0; font-family: var(--serif); font-size: 1rem; line-height: 1.6; }
+.meta dd { margin: 0; font-family: var(--sans); font-size: 0.95rem; line-height: 1.6; }
 
 /* Method */
 .method { padding: 32px 0 64px; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
-.steps h3 { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; margin: 16px 0 8px; }
+.steps h3 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; margin: 16px 0 8px; }
 .steps p { color: var(--ink-2); font-size: 0.95rem; margin: 0; }
 
 /* Sheet list */
@@ -183,14 +183,14 @@ p { margin: 0 0 1em; }
   align-items: baseline;
 }
 .sheet-row:hover { background: rgba(234, 242, 245, 0.04); }
-.sr-num { font-family: var(--serif); color: var(--red); font-size: 1.1rem; font-weight: 600; }
+.sr-num { font-family: var(--serif); color: var(--red); font-size: 1.25rem; font-weight: 700; }
 .sr-main { display: grid; gap: 4px; }
 .sr-name {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: -0.01em; line-height: 1.1;
 }
 .sheet-row:hover .sr-name { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 0.18em; }
-.sr-kind { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--ink-2); }
+.sr-kind { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--ink-2); }
 .sr-line { color: var(--ink-2); max-width: 60ch; margin-top: 4px; }
 .sr-status { font-size: 0.85rem; color: var(--ink); margin-top: 8px; display: flex; align-items: center; gap: 8px; }
 .sr-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
@@ -268,7 +268,7 @@ p { margin: 0 0 1em; }
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end;
 }
 .footer .h-section { border: 0; padding: 0; margin-bottom: 8px; }
-.contact { list-style: none; margin: 0; padding: 0; font-family: var(--serif); font-size: 1.05rem; display: grid; gap: 8px; }
+.contact { list-style: none; margin: 0; padding: 0; font-family: var(--sans); font-size: 0.95rem; display: grid; gap: 8px; }
 
 /* Responsive */
 @media (max-width: 960px) {
@@ -300,17 +300,17 @@ p { margin: 0 0 1em; }
   align-items: stretch;
 }
 .board-rail { display: flex; flex-direction: column; gap: 20px; }
-.board-title { font-family: var(--serif); font-style: italic; font-size: 1.15rem; margin: 0; color: var(--ink-2); }
+.board-title { font-family: var(--serif); font-style: italic; font-size: 1.3rem; margin: 0; color: var(--ink-2); }
 .board-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .board-steps li {
   display: flex; align-items: center; gap: 12px;
-  font-family: var(--serif); font-size: 1.15rem; color: var(--ink-2);
+  font-family: var(--serif); font-size: 1.3rem; color: var(--ink-2);
   transition: color 300ms ease;
 }
 .board-steps .b-n {
   display: inline-grid; place-items: center; width: 1.9em; height: 1.9em;
   border: 1.5px solid var(--rule); border-radius: 50%;
-  font-size: 0.8rem; font-weight: 600;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 600;
   transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
 }
 .board-steps li.done { color: var(--ink); }
@@ -319,7 +319,7 @@ p { margin: 0 0 1em; }
 .board-steps li.on .b-n { background: var(--red); border-color: var(--red); color: var(--paper-deep); }
 .board-foot { margin-top: auto; display: grid; gap: 10px; justify-items: start; }
 .board-name {
-  font-family: var(--serif); font-size: 1.6rem; line-height: 1.1; text-decoration: none;
+  font-family: var(--serif); font-size: 1.8rem; line-height: 1.1; text-decoration: none;
 }
 .board-name:hover { text-decoration: underline; text-decoration-color: var(--red); }
 .board-toggle {

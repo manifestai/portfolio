@@ -42,12 +42,13 @@ export default async function Work({ params }: { params: Promise<{ lang: string;
   let n = 0;
 
   return (
-    <div className="sheet">
+    <>
       <Header lang={lang} />
+      <div className="sheet">
       <main id="main">
         <section className="case-head">
           <p className="crumb">
-            <Link href={`/${lang}#sheets-title`}>{t(ui.back, lang)}</Link>
+            <Link href={`/${lang}#work`}>{t(ui.back, lang)}</Link>
           </p>
           <h1 className="h-hero">{p.name}</h1>
           <p className="case-kind">{t(p.kind, lang)}</p>
@@ -164,6 +165,7 @@ export default async function Work({ params }: { params: Promise<{ lang: string;
         </nav>
       </main>
       <Footer lang={lang} />
-    </div>
+      </div>
+    </>
   );
 }

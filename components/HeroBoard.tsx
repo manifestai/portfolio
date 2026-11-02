@@ -11,11 +11,11 @@ const WIRES: Record<"app" | "landing", R[]> = {
   app: [
     { x: 0, y: 0, w: 34, h: 100, c: 0 },
     { x: 34, y: 0, w: 126, h: 100, c: 1 },
-    { x: 4, y: 7, w: 26, h: 7, c: 1 },
-    { x: 4, y: 21, w: 22, h: 3, c: 1 },
-    { x: 4, y: 27, w: 25, h: 3, c: 1 },
-    { x: 4, y: 33, w: 19, h: 3, c: 1 },
-    { x: 4, y: 39, w: 23, h: 3, c: 1 },
+    { x: 5, y: 8, w: 24, h: 6, c: 1 },
+    { x: 5, y: 21, w: 21, h: 3, c: 1 },
+    { x: 5, y: 27, w: 24, h: 3, c: 1 },
+    { x: 5, y: 33, w: 18, h: 3, c: 1 },
+    { x: 5, y: 39, w: 22, h: 3, c: 1 },
     { x: 44, y: 12, w: 72, h: 8, c: 3 },
     { x: 44, y: 25, w: 52, h: 3, c: 3 },
     { x: 44, y: 37, w: 52, h: 47, c: 2 },
@@ -39,20 +39,23 @@ const WIRES: Record<"app" | "landing", R[]> = {
   ],
 };
 
-/* How long each stage holds, in ms. Typing time depends on the line. */
-const HOLD = { wire: 1500, tokens: 1500, product: 3400 };
+const WORD_MS = 90;
+const DUR = { wire: 1600, tokens: 1600, product: 4200 };
 
 export default function HeroBoard({ lang }: { lang: Lang }) {
   const items = board.items;
   const [i, setI] = useState(0);
   const [phase, setPhase] = useState(0); // 0 text, 1 wireframe, 2 tokens, 3 product
-  const [typed, setTyped] = useState(0);
+  const [run, setRun] = useState(0);
   const [paused, setPaused] = useState(false);
   const [still, setStill] = useState(false);
-  const timers = useRef<number[]>([]);
+  const timer = useRef<number | undefined>(undefined);
 
   const item: BoardItem = items[i];
   const line = t(item.line, lang);
+  const words = line.split(" ");
+  const textDur = 900 + words.length * WORD_MS + 1500;
+  const durs = [textDur, DUR.wire, DUR.tokens, DUR.product];
   const wire = WIRES[item.wire === "landing" ? "landing" : "app"];
 
   useEffect(() => {
@@ -64,112 +67,126 @@ export default function HeroBoard({ lang }: { lang: Lang }) {
   }, []);
 
   useEffect(() => {
-    timers.current.forEach(clearTimeout);
-    timers.current = [];
+    window.clearTimeout(timer.current);
     if (still) {
       setPhase(3);
-      setTyped(line.length);
       return;
     }
     if (paused) return;
-
-    const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
-    let clock = 0;
-
-    if (phase === 0) {
-      const step = Math.max(16, Math.min(34, 2400 / line.length));
-      for (let k = typed + 1; k <= line.length; k++) {
-        clock += step;
-        at(clock, () => setTyped(k));
-      }
-      at(clock + 700, () => setPhase(1));
-    } else if (phase === 1) {
-      at(HOLD.wire, () => setPhase(2));
-    } else if (phase === 2) {
-      at(HOLD.tokens, () => setPhase(3));
-    } else {
-      at(HOLD.product, () => {
-        setTyped(0);
+    timer.current = window.setTimeout(() => {
+      if (phase < 3) setPhase(phase + 1);
+      else {
         setPhase(0);
         setI((n) => (n + 1) % items.length);
-      });
-    }
-    return () => {
-      timers.current.forEach(clearTimeout);
-      timers.current = [];
-    };
-    // typed is read once per phase start on purpose
+      }
+    }, durs[phase]);
+    return () => window.clearTimeout(timer.current);
+    // durs derives from i and lang
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, paused, still, i, line]);
+  }, [phase, paused, still, i, run, lang]);
 
-  const steps = board.steps;
+  const pick = (k: number) => {
+    setI(k);
+    setPhase(still ? 3 : 0);
+    setRun((r) => r + 1);
+  };
+
+  const toggle = () => {
+    setPaused((p) => !p);
+    setRun((r) => r + 1);
+  };
 
   return (
-    <figure className="board" aria-label={`${t(board.label, lang)}: ${item.name}`}>
-      <div className="board-rail">
-        <p className="board-title">{t(board.label, lang)}</p>
-        <ol className="board-steps">
-          {steps.map((s, k) => (
-            <li key={k} className={k === phase ? "on" : k < phase ? "done" : undefined}>
-              <span className="b-n" aria-hidden="true">{k + 1}</span>
-              {t(s, lang)}
-            </li>
-          ))}
-        </ol>
-        <div className="board-foot">
-          <Link href={`/${lang}/work/${item.slug}`} className="board-name">
-            {item.name}
-          </Link>
+    <figure className={`stagebox${paused ? " paused" : ""}`} aria-label={`${t(board.label, lang)}: ${item.name}`}>
+      <div className="stage-tabs" role="group" aria-label={t(board.label, lang)}>
+        {items.map((it, k) => (
           <button
+            key={it.slug}
             type="button"
-            className="board-toggle"
-            onClick={() => setPaused((p) => !p)}
-            aria-pressed={paused}
-            hidden={still}
+            className={k === i ? "tab on" : "tab"}
+            aria-pressed={k === i}
+            onClick={() => pick(k)}
           >
-            {paused ? t(board.play, lang) : t(board.pause, lang)}
+            {it.name}
           </button>
+        ))}
+      </div>
+
+      <div className="window-wrap">
+        <span className="glow g1" style={{ backgroundColor: item.palette[2] }} aria-hidden="true" />
+        <span className="glow g2" style={{ backgroundColor: item.palette[0] }} aria-hidden="true" />
+        <div className="window">
+          <div className="chrome">
+            <span className="lights" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="chrome-title">
+              <span className="chrome-file">{item.file}</span>
+              <span className="chrome-arrow" aria-hidden="true" />
+              <Link href={`/${lang}/work/${item.slug}`}>{item.name}</Link>
+            </span>
+            <button type="button" className="chrome-btn" onClick={toggle} hidden={still} aria-pressed={paused}>
+              {paused ? t(board.play, lang) : t(board.pause, lang)}
+            </button>
+          </div>
+
+          <div className={`canvas p${phase}`} aria-hidden="true" key={`${i}-${run}`}>
+            <div className="c-text">
+              <span className="c-file">{item.file}</span>
+              <p className="c-line">
+                {words.map((w, k) => (
+                  <span key={k} style={{ "--k": k } as React.CSSProperties}>
+                    {w}{" "}
+                  </span>
+                ))}
+              </p>
+            </div>
+
+            <svg className="c-wire" viewBox="0 0 160 100" preserveAspectRatio="none">
+              {wire.map((r, k) => (
+                <rect
+                  key={k}
+                  x={r.x + 0.4}
+                  y={r.y + 0.4}
+                  width={Math.max(r.w - 0.8, 0.5)}
+                  height={Math.max(r.h - 0.8, 0.5)}
+                  rx={1.4}
+                  pathLength={1}
+                  style={{ "--fill": item.palette[r.c], "--k": k } as React.CSSProperties}
+                />
+              ))}
+            </svg>
+
+            <div className="c-chips">
+              {item.palette.map((c, k) => (
+                <span key={k} style={{ "--k": k } as React.CSSProperties}>
+                  <b style={{ background: c }} />
+                  {c.toUpperCase()}
+                </span>
+              ))}
+            </div>
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="c-shot" src={item.shot} alt="" />
+          </div>
         </div>
       </div>
 
-      <div className={`board-canvas p${phase}`} aria-hidden="true">
-        <div className="b-text">
-          <span className="b-file">{item.file}</span>
-          <p className="b-line">
-            {line.slice(0, typed)}
-            <span className="b-caret" />
-          </p>
-        </div>
-
-        <svg className="b-wire" viewBox="0 0 160 100" preserveAspectRatio="none" key={`w${i}`}>
-          {wire.map((r, k) => (
-            <rect
-              key={k}
-              x={r.x}
-              y={r.y}
-              width={r.w}
-              height={r.h}
-              pathLength={1}
-              style={
-                {
-                  "--fill": item.palette[r.c],
-                  "--d": `${k * 70}ms`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
-        </svg>
-
-        <div className="b-swatches">
-          {item.palette.map((c, k) => (
-            <span key={k} style={{ background: c, "--d": `${k * 110}ms` } as React.CSSProperties} />
-          ))}
-        </div>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="b-shot" src={item.shot} alt="" key={`s${i}`} />
-        <span className="b-scan" />
-      </div>
+      <ol className="stage-steps">
+        {board.steps.map((s, k) => (
+          <li key={k} className={k === phase ? "on" : k < phase ? "done" : undefined}>
+            <span className="bar">
+              <i key={`${i}-${phase}-${run}`} style={{ animationDuration: `${durs[k]}ms` }} />
+            </span>
+            <span className="step-label">
+              <span className="step-k">{k + 1}</span>
+              {t(s, lang)}
+            </span>
+          </li>
+        ))}
+      </ol>
     </figure>
   );
 }

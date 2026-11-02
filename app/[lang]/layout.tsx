@@ -6,6 +6,7 @@ import "@fontsource/neuton/700.css";
 import "@fontsource-variable/inter/index.css";
 import "../globals.css";
 import { langs, type Lang } from "@/lib/content";
+import { Backdrop } from "@/components/Chrome";
 
 export function generateStaticParams() {
   return langs.map((lang) => ({ lang }));
@@ -34,7 +35,10 @@ export default async function RootLayout({
   if (!langs.includes(lang as Lang)) notFound();
   return (
     <html lang={lang === "pt" ? "pt-BR" : "en"}>
-      <body>{children}</body>
+      <body>
+        <Backdrop />
+        {children}
+      </body>
     </html>
   );
 }

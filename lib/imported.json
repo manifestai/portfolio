@@ -1,0 +1,518 @@
+[
+ {
+  "slug": "sheenshot",
+  "nome": "Sheenshot",
+  "tipo": {
+   "pt": "App de prints para Mac",
+   "en": "Screenshot app for Mac"
+  },
+  "frase": {
+   "pt": "Um app de barra de menus que captura a tela, deixa o print bonito com um clique e transforma sequências de prints em guias passo a passo. Feito para quem tira muitos prints por dia.",
+   "en": "A menu bar app that captures the screen, makes screenshots look good in one click and turns a series of them into step by step guides. Made for people who take many screenshots daily."
+  },
+  "situacao": {
+   "pt": "Download grátis",
+   "en": "Free download"
+  },
+  "link_publico": "https://sheenshot.pages.dev",
+  "stack": [
+   "Swift",
+   "SwiftUI",
+   "AppKit",
+   "ScreenCaptureKit",
+   "Vision",
+   "Sparkle",
+   "HTML e CSS",
+   "Cloudflare Pages"
+  ],
+  "por_que_existe": {
+   "pt": "Tiro dezenas de prints por dia e queria que eles ficassem bons sem abrir uma ferramenta de design. Também queria achar cada print de novo depois. Montar um guia ou um relatório de bug a partir de prints exigia vários apps e minutos de trabalho manual.",
+   "en": "I take dozens of screenshots a day and wanted them to look good without opening a design tool. I also wanted to find each one again later. Turning screenshots into a guide or a bug report took several apps and minutes of manual work."
+  },
+  "pensar_em_publico": {
+   "texto": {
+    "pt": "Antes do código, escrevi um product brief com público, concorrentes, preço e riscos, e um plano de construção da V1 com arquitetura da informação e todos os atalhos. Decidi que nenhum código começaria antes de o visual estar aprovado. Escrevi um servidor MCP com proteções de privacidade e depois o tirei do app, porque não vi uso prático. Também cortei a busca por descrição com IA e os tamanhos por IA para fechar o escopo numa rodada.",
+    "en": "Before any code, I wrote a product brief with audience, competitors, pricing and risks, and a V1 build plan with the information architecture and every shortcut. I decided no code would start before the visuals were approved. I wrote an MCP server with privacy safeguards and later removed it from the app, because I saw no practical use. I also cut AI description search and AI sizes to close the scope in one round."
+   },
+   "trecho": {
+    "arquivo": "PLANO-V1.md",
+    "pt": "A construção segue sete fases: primeiro os mockups das telas para você aprovar o visual, depois o código em blocos que você roda no Xcode a cada etapa. Nada de código antes de o visual estar aprovado.",
+    "en": "The build follows seven phases: first the screen mockups for you to approve the look, then the code in blocks you run in Xcode at each step. No code before the look is approved.",
+    "codigo": false
+   }
+  },
+  "sistema_de_design": {
+   "texto": {
+    "pt": "Escuro, translúcido e com um só acento: um gradiente perolado de lilás (#C9BEFF) a pérola (#F1ECFB), usado só na ação principal e na seleção. O fundo é grafite quase preto (#0B0B0F) e o texto, #EDEDF3. A marca usa Instrument Sans; o app usa SF Pro e SF Mono. Cada atalho aparece desenhado como uma tecla física ao lado da ação, e cada tela tem uma só ação principal.",
+    "en": "Dark, translucent and with a single accent: a pearl gradient from lilac (#C9BEFF) to pearl (#F1ECFB), used only on the main action and on selection. The background is near black graphite (#0B0B0F) and text is #EDEDF3. The brand uses Instrument Sans; the app uses SF Pro and SF Mono. Every shortcut is drawn as a physical key next to its action, and each screen has one main action."
+   }
+  },
+  "construcao": {
+   "texto": {
+    "pt": "Construí o app nativo em Swift e SwiftUI, com AppKit para o overlay de captura e as janelas flutuantes, e o site estático bilíngue no Cloudflare Pages.",
+    "en": "I built the native app in Swift and SwiftUI, with AppKit for the capture overlay and floating windows, and a static bilingual site on Cloudflare Pages."
+   },
+   "fatos": [
+    {
+     "pt": "Prints Retina ficavam pesados para colar em chats de IA. Criei o Copiar para IA: copia em 1×, lado maior até 1568 px, em PNG. Deixei de fora a estimativa de tokens: cada IA reduz imagens de um jeito.",
+     "en": "Retina screenshots were heavy to paste into AI chats. I built Copy for AI: it copies at 1×, longest side up to 1568 px, as PNG. I left out a token estimate, because each AI downsizes images differently."
+    },
+    {
+     "pt": "Quem instala pelo site precisava receber versões novas sem baixar outro DMG. Coloquei o Sparkle com um appcast no site, e o app instalado se atualiza sozinho.",
+     "en": "People who install from the site needed new versions without downloading another DMG. I added Sparkle with an appcast on the site, and the installed app updates itself."
+    },
+    {
+     "pt": "A Biblioteca lê o texto de cada print no próprio Mac, com o Vision da Apple. A busca funciona por palavra, cor e app de origem, sem conta e sem nuvem.",
+     "en": "The Library reads the text in each screenshot on the Mac itself, with Apple's Vision. Search works by word, color and source app, with no account and no cloud."
+    },
+    {
+     "pt": "Criei o Palco limpo: um atalho cobre os ícones da mesa antes de capturar, gravar ou apresentar. Tirei dele a ativação do Foco, porque o caminho de configuração ficou longo demais.",
+     "en": "I built Clean Stage: one shortcut covers the desktop icons before you capture, record or present. I removed the Focus toggle from it, because the setup path got too long."
+    },
+    {
+     "pt": "Troquei a assinatura por compra única. O DMG libera tudo por 30 dias e depois segue como versão grátis; nenhum print é apagado.",
+     "en": "I dropped subscriptions for a one time purchase. The DMG unlocks everything for 30 days and then keeps working as the free version; no screenshot is deleted."
+    }
+   ]
+  },
+  "na_pratica": {
+   "texto": {
+    "pt": "Telas reais do app instalado no meu Mac: editor, barra de comandos, biblioteca, marca nos guias e o Palco limpo.",
+    "en": "Real screens from the app installed on my Mac: editor, command bar, library, brand in guides and Clean Stage."
+   }
+  },
+  "imagens": [
+   {
+    "arquivo": "01-editor.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Editor com fundo, margem, sombra e presets",
+     "en": "Editor with background, margin, shadow and presets"
+    }
+   },
+   {
+    "arquivo": "02-sistema-de-design.webp",
+    "etapa": "sistema",
+    "legenda": {
+     "pt": "Tokens de cor, tipografia e raios do código",
+     "en": "Color, type and radius tokens from the code"
+    }
+   },
+   {
+    "arquivo": "03-barra-de-comandos.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Barra de comandos com ⌘K",
+     "en": "Command bar with ⌘K"
+    }
+   },
+   {
+    "arquivo": "04-biblioteca.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Biblioteca com busca por texto, cor e app",
+     "en": "Library with search by text, color and app"
+    }
+   },
+   {
+    "arquivo": "05-marca-nos-guias.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Cores, fonte e logo aplicados nos guias",
+     "en": "Colors, font and logo applied to guides"
+    }
+   },
+   {
+    "arquivo": "06-palco-limpo-ajustes.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Ajustes do Palco limpo",
+     "en": "Clean Stage settings"
+    }
+   }
+  ],
+  "animacao_home": {
+   "arquivo_fonte": "site: pt/index.html e en/index.html (h1)",
+   "linha": {
+    "pt": "Prints bonitos em segundos.",
+    "en": "Beautiful screenshots in seconds."
+   },
+   "paleta": [
+    "#0B0B0F",
+    "#EDEDF3",
+    "#C9BEFF",
+    "#A1A1AE"
+   ],
+   "layout": "app",
+   "imagem": "01-editor.webp"
+  }
+ },
+ {
+  "slug": "casulo",
+  "nome": "Casulo",
+  "tipo": {
+   "pt": "Ilha no topo da tela do Mac",
+   "en": "Island at the top of the Mac screen"
+  },
+  "frase": {
+   "pt": "Um app para Mac que vive no topo da tela, nasce do notch e vira uma ilha de vidro nos monitores externos. Você solta um arquivo nele e recebe o resultado convertido.",
+   "en": "A Mac app that lives at the top of the screen, grows out of the notch and becomes a glass island on external displays. Drop a file on it and get the converted result."
+  },
+  "situacao": {
+   "pt": "Em teste",
+   "en": "In testing"
+  },
+  "link_publico": null,
+  "stack": [
+   "Swift",
+   "SwiftUI",
+   "AppKit",
+   "EventKit",
+   "PDFKit",
+   "Sparkle",
+   "MCP (stdio)"
+  ],
+  "por_que_existe": {
+   "pt": "Queria uma ilha no topo da tela que também funcionasse em monitores externos e em Macs sem notch, detectando o monitor sozinha. E queria soltar um arquivo ali e ver pequenos trabalhadores fazerem a conversão, sem abrir outro app.",
+   "en": "I wanted an island at the top of the screen that also worked on external displays and on Macs without a notch, detecting the display by itself. And I wanted to drop a file there and let small workers do the conversion, without opening another app."
+  },
+  "pensar_em_publico": {
+   "texto": {
+    "pt": "Segui uma ordem fixa: nome, especificação, design e só depois código. Escrevi um benchmark, a definição de produto e uma especificação da v1 com requisitos numerados (I-, T-, B-, R-, M-, N-). Dividi a v1 em cinco planos de versão, de 0.1 a 0.5, cada um com o que entrou, o que ficou de fora e por quê, e um checklist de teste. O que eu não consegui confirmar ficou marcado para verificar em teste real.",
+    "en": "I followed a fixed order: name, spec, design and only then code. I wrote a benchmark, the product definition and a v1 spec with numbered requirements (I-, T-, B-, R-, M-, N-). I split v1 into five version plans, 0.1 to 0.5, each with what shipped, what was left out and why, and a test checklist. Anything I could not confirm was flagged to verify in real testing."
+   },
+   "trecho": {
+    "arquivo": "PLANO-0.1.md",
+    "pt": "**Uma build só (0.1.0).** Tema: **a ilha existe, é leve e funciona em qualquer tela.**",
+    "en": "**A single build (0.1.0).** Theme: **the island exists, is light and works on any screen.**",
+    "codigo": false
+   }
+  },
+  "sistema_de_design": {
+   "texto": {
+    "pt": "Design system v0, noturno: fundo Noite (#0E0F1C) com texto Seda (#F3EFE6). Cada cor tem uma função: Vagalume (#F5C76A) para ação e trabalho rodando, Orvalho (#8FE3CF) para concluído, Lilás (#B9A7F5) para IA e voz, Brasa (#F2877A) para erro. A marca usa Fraunces; o app, SF Pro. No notch, a ilha ganha ombros: a borda curva para dentro onde encontra o topo da tela.",
+    "en": "Design system v0, nocturnal: Night background (#0E0F1C) with Silk text (#F3EFE6). Each color has a job: Firefly (#F5C76A) for actions and running work, Dew (#8FE3CF) for done, Lilac (#B9A7F5) for AI and voice, Ember (#F2877A) for errors. The brand uses Fraunces; the app uses SF Pro. At the notch, the island gets shoulders: the edge curves inward where it meets the top of the screen."
+   }
+  },
+  "construcao": {
+   "texto": {
+    "pt": "Construí em Swift e SwiftUI como Swift Package com scripts de compilação, só para barra de menus, Apple silicon e macOS 26 ou mais novo, com uma única dependência: o Sparkle.",
+    "en": "I built it in Swift and SwiftUI as a Swift Package with build scripts, menu bar only, Apple silicon and macOS 26 or later, with a single dependency: Sparkle."
+   },
+   "fatos": [
+    {
+     "pt": "A assinatura falhava porque a pasta do projeto sincroniza no iCloud. Mudei o script para montar e assinar o app numa pasta temporária e copiar o app pronto de volta.",
+     "en": "Code signing failed because the project folder syncs with iCloud. I changed the script to assemble and sign the app in a temporary folder and copy the finished app back."
+    },
+    {
+     "pt": "A ilha demorava a recolher: com ela aberta, o macOS parava de avisar o movimento do mouse sobre a própria janela transparente. Passei a conferir a posição 12 vezes por segundo, só enquanto ela está aberta.",
+     "en": "The island was slow to close: while open, macOS stopped reporting mouse movement over its own transparent window. I now check the pointer position 12 times per second, only while it is open."
+    },
+    {
+     "pt": "Qualquer comando vira trabalhador com um arquivo .json: extensões aceitas, saída e comando. O original nunca muda; o resultado fica ao lado dele.",
+     "en": "Any command becomes a worker with one .json file: accepted extensions, output and command. The original never changes; the result sits next to it."
+    },
+    {
+     "pt": "O servidor MCP roda por stdio e conversa com o app por um soquete Unix, sem porta de rede. A IA só lê do buffet o que eu liberei.",
+     "en": "The MCP server runs over stdio and talks to the app through a Unix socket, with no network port. The AI only reads what I allow from the buffet."
+    },
+    {
+     "pt": "Licença vitalícia: uma chave assinada, verificada no Mac sem internet, depois de 30 dias de teste. Quando o teste acaba, nada é apagado.",
+     "en": "Lifetime license: a signed key, checked on the Mac without internet, after a 30 day trial. When the trial ends, nothing is deleted."
+    }
+   ]
+  },
+  "na_pratica": {
+   "texto": {
+    "pt": "Por enquanto, o pacote tem o sistema de design, o ícone e a janela do DMG. As telas da ilha em uso ainda precisam ser capturadas no Mac.",
+    "en": "For now, the package has the design system, the icon and the DMG window. Screens of the island in use still need to be captured on the Mac."
+   }
+  },
+  "imagens": [
+   {
+    "arquivo": "01-sistema-de-design.webp",
+    "etapa": "sistema",
+    "legenda": {
+     "pt": "Cores com função, tipografia e raios do v0",
+     "en": "Purpose colors, type and radii from v0"
+    }
+   },
+   {
+    "arquivo": "02-icone.webp",
+    "etapa": "sistema",
+    "legenda": {
+     "pt": "Ícone: casulo iridescente com o vagalume",
+     "en": "Icon: iridescent cocoon with the firefly"
+    }
+   },
+   {
+    "arquivo": "03-janela-do-dmg.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Fundo da janela do DMG de instalação",
+     "en": "Background of the installer DMG window"
+    }
+   }
+  ],
+  "animacao_home": {
+   "arquivo_fonte": "fontes/MARCA.md",
+   "linha": {
+    "pt": "Você solta. O Casulo transforma.",
+    "en": "You drop it. Casulo transforms it."
+   },
+   "paleta": [
+    "#0E0F1C",
+    "#F3EFE6",
+    "#F5C76A",
+    "#A7A9C2"
+   ],
+   "layout": "landing",
+   "imagem": "01-sistema-de-design.webp"
+  }
+ },
+ {
+  "slug": "oye",
+  "nome": "Oye",
+  "tipo": {
+   "pt": "Recados de voz que chegam à IA",
+   "en": "Voice notes that reach your AI"
+  },
+  "frase": {
+   "pt": "Um app para Mac que grava recados de voz em qualquer app, transcreve no próprio aparelho e deixa tudo pronto para o Claude e outras IAs buscarem por MCP.",
+   "en": "A Mac app that records voice notes from any app, transcribes them on the device and keeps them ready for Claude and other AIs to pick up over MCP."
+  },
+  "situacao": {
+   "pt": "Beta, com lista de espera",
+   "en": "Beta, with a waitlist"
+  },
+  "link_publico": "https://oyenote.pages.dev",
+  "stack": [
+   "Swift",
+   "SwiftUI",
+   "AppKit",
+   "Speech",
+   "AVFoundation",
+   "SQLite",
+   "MCP (stdio)",
+   "Cloudflare Pages Functions",
+   "Sparkle"
+  ],
+  "por_que_existe": {
+   "pt": "Queria falar uma ideia ou um pedido em qualquer app e ter o recado esperando pela IA, com destino e instrução, sem copiar e colar transcrições. Comecei pelo Mac para usar eu mesmo.",
+   "en": "I wanted to speak an idea or a request from any app and have the note waiting for the AI, with a destination and instructions, without copying and pasting transcripts. I started with the Mac so I could use it myself."
+  },
+  "pensar_em_publico": {
+   "texto": {
+    "pt": "Cada versão começou num plano escrito com tema, o que entra, o que fica de fora e um checklist de teste. Na fase 1, decidi uso próprio e tudo local; a nuvem veio depois, só com texto cifrado. No plano da 0.5, defini que o Claude vai buscar no Oye e que o app ajuda a não esquecer de pedir. App de iPhone, Watch e App Store ficaram para depois.",
+    "en": "Each version started from a written plan with a theme, what goes in, what stays out and a test checklist. For phase 1, I chose personal use and everything local; the cloud came later, with encrypted text only. In the 0.5 plan, I set that Claude comes to fetch from Oye and the app helps you remember to ask. An iPhone app, Watch and the App Store were left for later."
+   },
+   "trecho": {
+    "arquivo": "README.md",
+    "pt": "O Oye não empurra recados para o Claude: o Claude vem buscar quando você pede. A v0.5 lembra e facilita o pedido.",
+    "en": "Oye does not push notes to Claude: Claude comes to fetch them when you ask. v0.5 reminds you and makes the request easier.",
+    "codigo": false
+   }
+  },
+  "sistema_de_design": {
+   "texto": {
+    "pt": "Laranja (#FF6A1C) para gravar e para a ação principal, amarelo (#FFDA62) e rosa (#F5788B) como apoio, tinta quase preta (#16130F) sobre creme (#FFF8EC). Títulos e botões de gravar em Bricolage Grotesque ExtraBold; tudo o que é para ler usa a fonte do sistema. A estética ilustrada, com traço e sombra chapada, fica no site e nos botões; o app usa vidro e mesh gradient, com legibilidade em primeiro lugar.",
+    "en": "Orange (#FF6A1C) for recording and the main action, yellow (#FFDA62) and pink (#F5788B) in support, near black ink (#16130F) on cream (#FFF8EC). Titles and record buttons use Bricolage Grotesque ExtraBold; everything meant for reading uses the system font. The illustrated look, with outlines and flat shadows, stays on the site and the buttons; the app uses glass and mesh gradients, with readability first."
+   }
+  },
+  "construcao": {
+   "texto": {
+    "pt": "Construí o app em Swift como Swift Package com três alvos (app, núcleo com SQLite e servidor MCP) e o modo nuvem em funções do Cloudflare Pages, no mesmo projeto do site.",
+    "en": "I built the app in Swift as a Swift Package with three targets (app, a SQLite core and the MCP server) and cloud mode as Cloudflare Pages functions, in the same project as the site."
+   },
+   "fatos": [
+    {
+     "pt": "A transcrição roda no Mac com o SpeechAnalyzer do macOS 26. Se ele falhar, o app tenta o reconhecedor antigo da Apple, também no aparelho.",
+     "en": "Transcription runs on the Mac with macOS 26's SpeechAnalyzer. If it fails, the app falls back to Apple's older recognizer, also on the device."
+    },
+    {
+     "pt": "O servidor MCP local tem seis ferramentas: listar a caixa, ler, pegar e resolver um recado, buscar e listar destinos.",
+     "en": "The local MCP server has six tools: list the inbox, read, claim and resolve a note, search, and list destinations."
+    },
+    {
+     "pt": "No modo nuvem, só o texto sobe, cifrado com AES-GCM por uma chave que vem do link pessoal. O áudio nunca sai do Mac.",
+     "en": "In cloud mode, only the text goes up, encrypted with AES-GCM using a key derived from the personal link. Audio never leaves the Mac."
+    },
+    {
+     "pt": "A IA não percebia recados novos sozinha. Na 0.5, a frase pronta aparece na notificação, na caixa e no menu, e o servidor oferece pedidos prontos por MCP prompts.",
+     "en": "The AI did not notice new notes on its own. In 0.5, the ready made phrase shows up in the notification, the inbox and the menu, and the server offers ready made requests as MCP prompts."
+    },
+    {
+     "pt": "Separei Trabalho e Pessoal: o recado cai num espaço pela fala ou pelo app em uso, e cada espaço escolhe em quais IAs aparece.",
+     "en": "I split Work and Personal: a note lands in a space by voice or by the app in use, and each space chooses which AIs can see it."
+    }
+   ]
+  },
+  "na_pratica": {
+   "texto": {
+    "pt": "Por enquanto, o pacote tem o sistema de design e o ícone. As telas do app em uso ainda precisam ser capturadas no Mac.",
+    "en": "For now, the package has the design system and the icon. Screens of the app in use still need to be captured on the Mac."
+   }
+  },
+  "imagens": [
+   {
+    "arquivo": "01-sistema-de-design.webp",
+    "etapa": "sistema",
+    "legenda": {
+     "pt": "Cores, tipografia e raios da marca",
+     "en": "Brand colors, type and radii"
+    }
+   },
+   {
+    "arquivo": "02-icone.webp",
+    "etapa": "sistema",
+    "legenda": {
+     "pt": "Ícone do app",
+     "en": "App icon"
+    }
+   }
+  ],
+  "animacao_home": {
+   "arquivo_fonte": "fontes/README-redigido.md",
+   "linha": {
+    "pt": "Fale. Sua IA escuta.",
+    "en": "Speak. Your AI listens."
+   },
+   "paleta": [
+    "#FFF8EC",
+    "#16130F",
+    "#FF6A1C",
+    "#3B342C"
+   ],
+   "layout": "landing",
+   "imagem": "01-sistema-de-design.webp"
+  }
+ },
+ {
+  "slug": "convert",
+  "nome": "Convert",
+  "tipo": {
+   "pt": "Conversor de arquivos local para Mac",
+   "en": "Local file converter for Mac"
+  },
+  "frase": {
+   "pt": "Um conversor que roda no Mac e transforma desenhos DWG, PDFs, Markdown e arquivos do Office. Funciona pela janela, pelo Terminal ou pelo Claude.",
+   "en": "A converter that runs on the Mac and turns DWG drawings, PDFs, Markdown and Office files into other formats. It works from its window, from Terminal or from Claude."
+  },
+  "situacao": {
+   "pt": "Uso próprio",
+   "en": "Personal use"
+  },
+  "link_publico": null,
+  "stack": [
+   "Python",
+   "ezdxf",
+   "PyMuPDF",
+   "pymupdf4llm",
+   "MarkItDown",
+   "WeasyPrint",
+   "pywebview",
+   "MCP"
+  ],
+  "por_que_existe": {
+   "pt": "Precisei converter desenhos DWG para PDF para ler plantas baixas. Construí um conversor local e aproveitei para juntar outras conversões que eu fazia à mão, como PDF para Markdown.",
+   "en": "I needed to convert DWG drawings to PDF to read floor plans. I built a local converter and used it to bring together other conversions I did by hand, like PDF to Markdown."
+  },
+  "pensar_em_publico": {
+   "texto": {
+    "pt": "Defini três entradas desde o começo: a janela do app, o Terminal e o Claude, todas usando o mesmo núcleo. Escrevi no README uma tabela do que converte para o quê e notas honestas de qualidade, como os estilos de plotagem do AutoCAD que saem aproximados. Não escrevi um plano de produto separado; as decisões estão no resumo.md.",
+    "en": "I set three entry points from the start: the app window, Terminal and Claude, all using the same core. In the README I wrote a table of what converts to what and honest quality notes, such as AutoCAD plot styles that come out approximated. I did not write a separate product plan; the decisions are in resumo.md."
+   },
+   "trecho": {
+    "arquivo": "README.md",
+    "pt": "Os resultados são salvos ao lado do arquivo original, a menos que você escolha uma pasta com `--out`.\nUm arquivo existente nunca é sobrescrito: uma cópia numerada é criada no lugar, a menos que você passe `--overwrite`.",
+    "en": "Results are saved next to the original file unless you choose a folder with `--out`.\nAn existing file is never overwritten: a numbered copy is created instead, unless you pass `--overwrite`.",
+    "codigo": false
+   }
+  },
+  "sistema_de_design": {
+   "texto": {
+    "pt": "Vidro escuro sobre preto (#000000) com um acento laranja (#FF9A44) em gradiente até #F2683A, usado no botão Convert e na opção escolhida. Verde (#7BE0A5) indica concluído; vermelho (#FF7A7A), falha. Inter no texto e DM Mono em tamanhos e extensões. Todos os tokens ficam no topo de um só arquivo HTML: trocá-los troca a aparência do app inteiro.",
+    "en": "Dark glass on black (#000000) with an orange accent (#FF9A44) in a gradient to #F2683A, used on the Convert button and the chosen option. Green (#7BE0A5) means done; red (#FF7A7A), failure. Inter for text and DM Mono for sizes and extensions. All tokens sit at the top of a single HTML file: changing them re-skins the whole app."
+   }
+  },
+  "construcao": {
+   "texto": {
+    "pt": "Construí em Python, com um núcleo que escolhe o motor certo para cada tipo de arquivo e três pontas: janela com pywebview, servidor MCP e linha de comando.",
+    "en": "I built it in Python, with a core that picks the right engine for each file type and three front ends: a pywebview window, an MCP server and a command line."
+   },
+   "fatos": [
+    {
+     "pt": "Para DWG, uso o ODA File Converter quando está instalado, por ser o mais fiel, e o LibreDWG como reserva. Cada layout sai no tamanho do próprio papel, em PDF vetorial.",
+     "en": "For DWG, I use the ODA File Converter when installed, because it is the most faithful, with LibreDWG as a fallback. Each layout prints at its own paper size, as a vector PDF."
+    },
+    {
+     "pt": "Um desenho também pode virar JSON com todos os textos, cotas, blocos e camadas, para a IA ler os valores sem abrir o desenho.",
+     "en": "A drawing can also become JSON with all its text, dimensions, blocks and layers, so an AI can read the values without opening the drawing."
+    },
+    {
+     "pt": "Nada é sobrescrito: se o arquivo de saída já existe, o Convert cria uma cópia numerada.",
+     "en": "Nothing is overwritten: if the output file already exists, Convert creates a numbered copy."
+    },
+    {
+     "pt": "A janela avisa o que está instalado (leitor de DWG, layout exato do Office) para explicar a qualidade antes da conversão.",
+     "en": "The window shows what is installed (DWG reader, exact Office layout) to explain the quality before converting."
+    }
+   ]
+  },
+  "na_pratica": {
+   "texto": {
+    "pt": "A interface real do app, com arquivos fictícios: a fila pronta, a conversão concluída e a tela inicial.",
+    "en": "The app's real interface, with fictional files: the ready queue, the finished conversion and the start screen."
+   }
+  },
+  "imagens": [
+   {
+    "arquivo": "01-arquivos-prontos.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Fila com DWG, PDF, planilha e Markdown",
+     "en": "Queue with DWG, PDF, spreadsheet and Markdown"
+    }
+   },
+   {
+    "arquivo": "02-conversao-concluida.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Conversões concluídas, com Mostrar no Finder",
+     "en": "Finished conversions, with Show in Finder"
+    }
+   },
+   {
+    "arquivo": "03-tela-inicial.webp",
+    "etapa": "pratica",
+    "legenda": {
+     "pt": "Tela inicial para soltar arquivos",
+     "en": "Start screen to drop files"
+    }
+   },
+   {
+    "arquivo": "04-sistema-de-design.webp",
+    "etapa": "sistema",
+    "legenda": {
+     "pt": "Tokens de cor, tipografia e raios",
+     "en": "Color, type and radius tokens"
+    }
+   }
+  ],
+  "animacao_home": {
+   "arquivo_fonte": "fontes/README-redigido.md",
+   "linha": {
+    "pt": "Um conversor de arquivos que roda no seu Mac.",
+    "en": "A file converter that runs on your Mac."
+   },
+   "paleta": [
+    "#000000",
+    "#FFFFFF",
+    "#FF9A44",
+    "#939393"
+   ],
+   "layout": "app",
+   "imagem": "01-arquivos-prontos.webp"
+  }
+ }
+]

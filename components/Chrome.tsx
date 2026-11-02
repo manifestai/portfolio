@@ -4,16 +4,34 @@ import LangSwitch from "./LangSwitch";
 
 const total = String(products.length).padStart(2, "0");
 
+export function Backdrop() {
+  return (
+    <div className="backdrop" aria-hidden="true">
+      <span className="aurora a1" />
+      <span className="aurora a2" />
+      <span className="aurora a3" />
+      <span className="beam" />
+      <span className="dots" />
+      <span className="grain" />
+    </div>
+  );
+}
+
 export function Header({ lang }: { lang: Lang }) {
   return (
     <header className="topbar">
       <a className="skip" href="#main">{t(ui.skip, lang)}</a>
-      <Link href={`/${lang}`} className="mark" aria-label="Charlles Pinon">
-        C<span className="dot">.</span>
-      </Link>
-      <nav aria-label={lang === "pt" ? "Idioma" : "Language"}>
+      <div className="topbar-inner">
+        <Link href={`/${lang}`} className="mark" aria-label="Charlles Pinon">
+          C<span className="dot">.</span>
+        </Link>
+        <nav className="nav" aria-label={lang === "pt" ? "Seções" : "Sections"}>
+          <Link href={`/${lang}#work`}>{t(ui.navWork, lang)}</Link>
+          <Link href={`/${lang}#method`}>{t(ui.navMethod, lang)}</Link>
+          <a href="mailto:charllespinon@gmail.com">{t(ui.navContact, lang)}</a>
+        </nav>
         <LangSwitch lang={lang} />
-      </nav>
+      </div>
     </header>
   );
 }
@@ -51,21 +69,27 @@ export function TitleBlock({ lang, sheet, title }: { lang: Lang; sheet: string; 
 
 export function Footer({ lang }: { lang: Lang }) {
   return (
-    <footer className="footer">
-      <div>
-        <h2 className="h-section">{t(ui.contactTitle, lang)}</h2>
-        <p className="lede">{t(ui.contactBody, lang)}</p>
-      </div>
-      <ul className="contact">
-        <li>
-          <a href="mailto:charllespinon@gmail.com">charllespinon@gmail.com</a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/charllespinon" rel="noopener">
-            linkedin.com/in/charllespinon
+    <footer className="footer" id="contact">
+      <div className="footer-card">
+        <div>
+          <h2 className="h-section">{t(ui.contactTitle, lang)}</h2>
+          <p className="lede">{t(ui.contactBody, lang)}</p>
+        </div>
+        <div className="footer-actions">
+          <a className="btn btn-primary" href="mailto:charllespinon@gmail.com">
+            charllespinon@gmail.com
           </a>
-        </li>
-      </ul>
+          <a className="btn btn-ghost" href="https://www.linkedin.com/in/charllespinon" rel="noopener">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      <p className="footer-sign">
+        <span className="mark small">
+          C<span className="dot">.</span>
+        </span>
+        Charlles Pinon, Recife
+      </p>
     </footer>
   );
 }

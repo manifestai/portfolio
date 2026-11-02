@@ -477,14 +477,78 @@ export const products: Product[] = [
     slug: "casulo",
     sheet: "06",
     name: "Casulo",
-    kind: { en: "Mac app", pt: "App para Mac" },
+    kind: { en: "Mac app inspired by the Dynamic Island", pt: "App para Mac inspirado na Dynamic Island" },
     oneLine: {
-      en: "My newest Mac app. The full sheet is being drawn.",
-      pt: "Meu app para Mac mais recente. A folha completa está sendo desenhada.",
+      en: "It lives at the top of the screen, born from the notch. Drop a file and Casulo transforms it; everything you copy stays at hand; and the island talks to Claude through MCP.",
+      pt: "Ele mora no topo da tela e nasce do notch. Você solta um arquivo e o Casulo transforma; o que você copia fica à mão; e a ilha conversa com o Claude por MCP.",
     },
-    status: { en: "Sheet in progress", pt: "Folha em preparação" },
-    stack: ["macOS app"],
-    pending: true,
+    status: { en: "Version 0.5, in testing before 1.0", pt: "Versão 0.5, em teste antes da 1.0" },
+    stack: ["Swift", "SwiftUI", "macOS 26", "Sparkle", "MCP (stdio)", "Unix socket"],
+    why: {
+      en: "Small file chores (PDF to text, images to PDF, zipping, sending something to an AI) keep pulling me out of the work. The top of the screen is always there, so it became the place to drop things.",
+      pt: "Pequenas tarefas com arquivos (PDF para texto, imagens para PDF, compactar, mandar algo para a IA) me tiravam do trabalho o tempo todo. O topo da tela está sempre ali, então virou o lugar de soltar as coisas.",
+    },
+    think: {
+      body: {
+        en: "The thesis fits in one line: you drop it, Casulo transforms it. Requirements carry IDs from the v1 specification, each version gets a PLANO file with what went in, what stayed out and a test checklist, and any number not yet measured on the Mac is flagged to verify instead of guessed.",
+        pt: "A tese cabe numa linha: você solta, o Casulo transforma. Os requisitos têm IDs da especificação da v1, cada versão ganha um arquivo PLANO com o que entrou, o que ficou de fora e um checklist de teste, e todo número ainda não medido no Mac fica marcado para verificar em vez de chutado.",
+      },
+      excerpt: {
+        file: "GUIA-DO-DONO.md",
+        text: {
+          en: "Everything local: nothing leaves the Mac, except what the person sends to the AI on purpose. No usage analytics.",
+          pt: "Tudo local: nada sai do Mac, exceto o que a pessoa manda à IA de propósito. Sem análise de uso.",
+        },
+      },
+    },
+    system: {
+      body: {
+        en: "A night palette where every color has a job: Firefly gold for the main action and running work, Dew for done, Lilac for AI, voice and MCP, Ember for errors and a live microphone. Fraunces carries the brand, SF Pro the app. One shape rule defines the island: where it meets the top of the screen, its edge curves inward like the MacBook lid.",
+        pt: "Uma paleta noturna em que cada cor tem função: Vagalume para a ação principal e o trabalho rodando, Orvalho para concluído, Lilás para IA, voz e MCP, Brasa para erro e microfone ligado. A Fraunces conduz a marca, o SF Pro conduz o app. Uma regra de forma define a ilha: onde ela encontra o topo da tela, a borda curva para dentro, como a tampa do MacBook.",
+      },
+      shots: [
+        { src: "/shots/casulo/brand.webp", caption: { en: "Icons and the palette, each color with its job", pt: "Ícones e paleta, cada cor com sua função" } },
+        { src: "/shots/casulo/icon.webp", caption: { en: "App icon: the cocoon in a spiral, with the firefly", pt: "Ícone do app: o casulo em espiral, com o vagalume" } },
+      ],
+    },
+    build: {
+      body: {
+        en: "A Swift package with a single dependency, Sparkle, compiled from the terminal with no Xcode project.",
+        pt: "Um pacote Swift com uma única dependência, o Sparkle, compilado pelo terminal, sem projeto do Xcode.",
+      },
+      facts: [
+        {
+          en: "One executable, three roles: the app, a local MCP server for Claude Desktop and Claude Code, and a Claude Code hook that brings permission requests to the island. They talk over a Unix socket, with no network port.",
+          pt: "Um executável, três papéis: o app, um servidor MCP local para o Claude Desktop e o Claude Code, e um hook do Claude Code que traz os pedidos de permissão para a ilha. Eles conversam por um soquete Unix, sem porta de rede.",
+        },
+        {
+          en: "Workers: any command becomes a converter with one .json contract in a folder. The built-in ones join images into PDF, turn PDF into text and Markdown into PDF, read text in images and zip files. Originals are never changed.",
+          pt: "Trabalhadores: qualquer comando vira conversor com um contrato .json numa pasta. Os nativos juntam imagens em PDF, tiram texto de PDF, transformam Markdown em PDF, leem texto de imagem e compactam. O original nunca é alterado.",
+        },
+        {
+          en: "The buffet keeps the clipboard (skipping passwords), results and AI items; other apps join it by leaving small cards, without copying their data.",
+          pt: "O buffet guarda a área de transferência (sem senhas), os resultados e os itens da IA; outros apps entram deixando pequenos cartões, sem copiar os dados deles.",
+        },
+        {
+          en: "A teleprompter under the camera that follows your voice and stays out of recordings, plus push-to-talk commands transcribed on the Mac.",
+          pt: "Um teleprompter abaixo da câmera que segue a voz e não aparece nas gravações, e comandos de voz por atalho, transcritos no próprio Mac.",
+        },
+        {
+          en: "A 30-day trial and a lifetime license verified offline, and signed updates through Sparkle with release notes.",
+          pt: "Teste de 30 dias e licença vitalícia verificada sem internet, e atualizações assinadas pelo Sparkle, com notas de versão.",
+        },
+      ],
+    },
+    run: {
+      body: {
+        en: "The release notes of version 0.5, as they appear in the update window, and the installer, designed with the brand.",
+        pt: "As notas da versão 0.5, como aparecem na janela de atualização, e o instalador, desenhado com a marca.",
+      },
+      shots: [
+        { src: "/shots/casulo/notes.webp", caption: { en: "Version 0.5 release notes", pt: "Notas da versão 0.5" } },
+        { src: "/shots/casulo/installer.webp", caption: { en: "Installer window: drag Casulo to Applications", pt: "Janela do instalador: arrastar o Casulo para Aplicativos" } },
+      ],
+    },
   },
 ];
 

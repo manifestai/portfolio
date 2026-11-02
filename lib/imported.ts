@@ -47,12 +47,18 @@ const runOverride: Record<string, { body: T; shots: Shot[] } | null> = {
   oye: null,
 };
 
+/* Cover on the home grid when the first screen is not the best picture of the product. */
+const covers: Record<string, string> = {
+  casulo: "/shots/casulo/02-icone.webp",
+};
+
 export const importedProducts: Product[] = exports.map((e) => {
   const run =
     e.slug in runOverride
       ? runOverride[e.slug] ?? undefined
       : { body: e.na_pratica.texto, shots: shots(e, "pratica") };
   return {
+    cover: covers[e.slug],
     slug: e.slug,
     sheet: "",
     name: e.nome,

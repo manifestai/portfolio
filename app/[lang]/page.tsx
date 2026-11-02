@@ -51,7 +51,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </div>
             <ul className="sheet-grid">
               {products.map((p) => {
-                const cover = p.run?.shots[0]?.src ?? p.system?.shots[0]?.src;
+                const cover = p.cover ?? p.run?.shots[0]?.src ?? p.system?.shots[0]?.src;
                 return (
                   <li key={p.slug}>
                     <Link href={`/${lang}/work/${p.slug}`} className="product-card">

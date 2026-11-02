@@ -22,6 +22,7 @@ export type Product = {
   build?: { body: T; facts: T[] };
   run?: { body: T; shots: Shot[] };
   pending?: boolean;
+  cover?: string;
 };
 
 export const ui = {

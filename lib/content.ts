@@ -88,10 +88,11 @@ export const ui = {
       space: "problem" as const,
       name: { en: "Frame", pt: "Enquadrar" },
       body: {
-        en: "I cross both sides into one problem worth solving: it moves the business number and removes a real pain for whoever lives it. Then one outcome metric for each side and a written list of what stays out.",
-        pt: "Cruzo os dois lados num único problema que vale resolver: ele mexe no número do negócio e tira uma dor real de quem vive o trabalho. Depois, uma métrica de resultado para cada lado e uma lista escrita do que fica de fora.",
+        en: "I cross both sides into one problem worth solving. User needs crystallize as a job to be done; the business side names the number that rises when that job is done well. Then one metric for each side and a written list of what stays out.",
+        pt: "Cruzo os dois lados num único problema que vale resolver. As necessidades de uso se cristalizam num job to be done; o lado do negócio diz qual número sobe quando esse job é bem resolvido. Depois, uma métrica para cada lado e uma lista escrita do que fica de fora.",
       },
-      output: { en: "Problem statement, business and user metrics, out of scope", pt: "Declaração do problema, métricas de negócio e de uso, fora do escopo" },
+      job: true,
+      output: { en: "Job to be done, business and use metrics, out of scope", pt: "Job to be done, métricas de negócio e de uso, fora do escopo" },
     },
     {
       space: "solution" as const,
@@ -134,8 +135,28 @@ export const ui = {
     name: T;
     body?: T;
     lanes?: { label: T; body: T }[];
+    job?: boolean;
     output: T;
   }[],
+  jtbd: {
+    label: { en: "Job to be done", pt: "Job to be done" },
+    parts: [
+      { en: "When", pt: "Quando" },
+      { en: "situation", pt: "situação" },
+      { en: "I want to", pt: "quero" },
+      { en: "motivation", pt: "motivação" },
+      { en: "so I can", pt: "para" },
+      { en: "outcome", pt: "resultado" },
+    ],
+  },
+  sheetHint: {
+    en: "Phases 3 to 6 leave a trail in every product below. Open one to see how.",
+    pt: "As etapas 3 a 6 deixam rastro em cada produto abaixo. Abra uma para ver como.",
+  },
+  sheetOpen: { en: "See it on the sheets", pt: "Ver nas folhas" },
+  sheetKicker: { en: "On every product sheet", pt: "Em cada folha de produto" },
+  sheetSee: { en: "See it in", pt: "Veja em" },
+  sheetClose: { en: "Close", pt: "Fechar" },
   processLoop: { en: "Then back to discovery, with better questions.", pt: "Depois, de volta à descoberta, com perguntas melhores." },
   methodTitle: { en: "How every sheet is drawn", pt: "Como cada folha é desenhada" },
   method: [

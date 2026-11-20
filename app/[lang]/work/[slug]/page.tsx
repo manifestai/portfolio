@@ -92,7 +92,7 @@ export default async function Work({ params }: { params: Promise<{ lang: string;
             )}
 
             {p.think && (
-              <section className="stage">
+              <section className="stage" id="think">
                 <h2 className="h-stage">
                   <span className="stage-n">{++n}</span>
                   {t(S.think, lang)}
@@ -111,7 +111,7 @@ export default async function Work({ params }: { params: Promise<{ lang: string;
             )}
 
             {p.system && (
-              <section className="stage">
+              <section className="stage" id="system">
                 <h2 className="h-stage">
                   <span className="stage-n">{++n}</span>
                   {t(S.system, lang)}
@@ -124,7 +124,7 @@ export default async function Work({ params }: { params: Promise<{ lang: string;
             )}
 
             {p.build && (
-              <section className="stage">
+              <section className="stage" id="build">
                 <h2 className="h-stage">
                   <span className="stage-n">{++n}</span>
                   {t(S.build, lang)}
@@ -141,7 +141,7 @@ export default async function Work({ params }: { params: Promise<{ lang: string;
             )}
 
             {p.run && (
-              <section className="stage">
+              <section className="stage" id="run">
                 <h2 className="h-stage">
                   <span className="stage-n">{++n}</span>
                   {t(S.run, lang)}

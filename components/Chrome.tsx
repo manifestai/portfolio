@@ -28,7 +28,6 @@ export function Header({ lang }: { lang: Lang }) {
         <nav className="nav" aria-label={lang === "pt" ? "Seções" : "Sections"}>
           <Link href={`/${lang}#process`}>{t(ui.navProcess, lang)}</Link>
           <Link href={`/${lang}#work`}>{t(ui.navWork, lang)}</Link>
-          <Link href={`/${lang}#method`}>{t(ui.navMethod, lang)}</Link>
           <a href="mailto:charllespinon@gmail.com">{t(ui.navContact, lang)}</a>
         </nav>
         <LangSwitch lang={lang} />

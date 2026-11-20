@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ui, products, t, type Lang } from "@/lib/content";
 import { Header, Footer } from "@/components/Chrome";
 import HeroBoard from "@/components/HeroBoard";
+import ProcessExplorer from "@/components/ProcessExplorer";
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: l } = await params;
@@ -33,58 +34,48 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <p className="kicker">{t(ui.processKicker, lang)}</p>
             <h2 id="process-title" className="h-section">{t(ui.processTitle, lang)}</h2>
             <p className="lede process-lede">{t(ui.processLede, lang)}</p>
-            <ol className="phases">
-              {ui.process.map((ph, i) => (
-                <li key={i} className={`card phase ${ph.space}${i === 0 || i === ui.process.length - 1 ? " wide" : ""}`}>
-                  <div className="phase-top">
-                    <span className="step-n" aria-hidden="true">{i + 1}</span>
-                    <span className={`space-tag ${ph.space}`}>{t(ui.spaces[ph.space], lang)}</span>
-                  </div>
-                  <h3>{t(ph.name, lang)}</h3>
-                  {ph.lanes ? (
-                    <>
-                      <div className="lanes">
-                        {ph.lanes.map((ln, j) => (
-                          <div key={j} className="lane">
-                            <p className="lane-label">{t(ln.label, lang)}</p>
-                            <p>{t(ln.body, lang)}</p>
-                          </div>
-                        ))}
-                        <span className="lane-plus" aria-hidden="true">+</span>
-                      </div>
-                      <p className="equation">
-                        {t(ui.equation.business, lang)} <span>+</span> {t(ui.equation.use, lang)} <span>=</span>{" "}
-                        <b>{t(ui.equation.product, lang)}</b>
-                      </p>
-                    </>
-                  ) : (
-                    ph.body && <p>{t(ph.body, lang)}</p>
-                  )}
-                  <p className="phase-out">
-                    <span>{t(ui.outputLabel, lang)}</span>
-                    {t(ph.output, lang)}
-                  </p>
-                </li>
-              ))}
-              <li className="loop">
-                <span className="loop-icon" aria-hidden="true">&#8634;</span>
-                <p>{t(ui.processLoop, lang)}</p>
-              </li>
-            </ol>
+            <ProcessExplorer
+              phases={ui.process.map((ph, i) => {
+                const m = i >= 2 ? ui.method[i - 2] : undefined;
+                const stage = ["think", "system", "build", "run"][i - 2] as "think" | "system" | "build" | "run" | undefined;
+                return {
+                  space: ph.space,
+                  spaceLabel: t(ui.spaces[ph.space], lang),
+                  name: t(ph.name, lang),
+                  body: ph.body && t(ph.body, lang),
+                  lanes: ph.lanes?.map((ln) => ({ label: t(ln.label, lang), body: t(ln.body, lang) })),
+                  equation: ph.lanes && {
+                    business: t(ui.equation.business, lang),
+                    use: t(ui.equation.use, lang),
+                    product: t(ui.equation.product, lang),
+                  },
+                  job: ph.job ? { label: t(ui.jtbd.label, lang), parts: ui.jtbd.parts.map((x) => t(x, lang)) } : undefined,
+                  output: t(ph.output, lang),
+                  sheet:
+                    m && stage
+                      ? {
+                          stage,
+                          name: t(m.name, lang),
+                          body: t(m.body, lang),
+                          links: products
+                            .filter((p) => !p.pending && p[stage])
+                            .map((p) => ({ href: `/${lang}/work/${p.slug}#${stage}`, name: p.name })),
+                        }
+                      : undefined,
+                };
+              })}
+              labels={{
+                output: t(ui.outputLabel, lang),
+                open: t(ui.sheetOpen, lang),
+                kicker: t(ui.sheetKicker, lang),
+                see: t(ui.sheetSee, lang),
+                close: t(ui.sheetClose, lang),
+                hint: t(ui.sheetHint, lang),
+                loop: t(ui.processLoop, lang),
+              }}
+            />
           </section>
 
-          <section className="method" id="method" aria-labelledby="method-title">
-            <h2 id="method-title" className="h-section">{t(ui.methodTitle, lang)}</h2>
-            <ol className="steps">
-              {ui.method.map((m, i) => (
-                <li key={i} className="card">
-                  <span className="step-n" aria-hidden="true">{i + 1}</span>
-                  <h3>{t(m.name, lang)}</h3>
-                  <p>{t(m.body, lang)}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
 
           <section className="sheets" id="work" aria-labelledby="sheets-title">
             <div className="section-head">

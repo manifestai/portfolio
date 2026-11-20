@@ -42,6 +42,96 @@ export const ui = {
     en: "I'm Charlles Pinon, a product manager for 9+ years. Today Claude Code is my workbench: I write the product down, design its system, build it and put it in front of real users. Each sheet below shows that whole path for one product.",
     pt: "Sou Charlles Pinon, product manager há 9+ anos. Hoje o Claude Code é minha bancada: escrevo o produto, desenho o sistema, construo e coloco na mão de usuários reais. Cada folha abaixo mostra esse caminho inteiro para um produto.",
   },
+  navProcess: { en: "Process", pt: "Processo" },
+  processKicker: { en: "My process as a PM", pt: "Meu processo como PM" },
+  processTitle: {
+    en: "From the business question to the working product",
+    pt: "Da pergunta do negócio ao produto funcionando",
+  },
+  processLede: {
+    en: "AI shortened the distance between an idea and a working product. The product work that decides which idea deserves that path stays the same. This is how I run it, end to end.",
+    pt: "A IA encurtou a distância entre uma ideia e um produto funcionando. O trabalho de produto que decide qual ideia merece esse caminho continua o mesmo. É assim que eu conduzo, de ponta a ponta.",
+  },
+  spaces: {
+    problem: { en: "Problem space", pt: "Espaço do problema" },
+    solution: { en: "Solution space", pt: "Espaço da solução" },
+  },
+  outputLabel: { en: "Output", pt: "Entrega" },
+  process: [
+    {
+      space: "problem" as const,
+      name: { en: "Discover", pt: "Descobrir" },
+      lanes: [
+        {
+          label: { en: "Business", pt: "Negócio" },
+          body: {
+            en: "With whoever owns the goal: which number has to move, by when, and what the business won't give up along the way.",
+            pt: "Com quem responde pela meta: qual número precisa mexer, em que prazo e do que o negócio não abre mão no caminho.",
+          },
+        },
+        {
+          label: { en: "User", pt: "Usuário" },
+          body: {
+            en: "With the people who will use it: interviews and watching the work as it happens today, workarounds included.",
+            pt: "Com quem vai usar: entrevistas e observação do trabalho como ele acontece hoje, gambiarras incluídas.",
+          },
+        },
+      ],
+      output: { en: "Interview notes and a map of the current journey", pt: "Notas de entrevista e mapa da jornada atual" },
+    },
+    {
+      space: "problem" as const,
+      name: { en: "Frame", pt: "Enquadrar" },
+      body: {
+        en: "I cross both sides into one problem worth solving: who has it, how often, what it costs today. Then one outcome metric and a written list of what stays out.",
+        pt: "Cruzo os dois lados num único problema que vale resolver: quem tem, com que frequência, quanto custa hoje. Depois, uma métrica de resultado e uma lista escrita do que fica de fora.",
+      },
+      output: { en: "Problem statement, success metric, out of scope", pt: "Declaração do problema, métrica de sucesso, fora do escopo" },
+    },
+    {
+      space: "solution" as const,
+      name: { en: "Write", pt: "Escrever" },
+      body: {
+        en: "The product becomes text before any screen exists. PRODUCT.md sets audience, tone and scope; the spec gives each flow its acceptance criteria; CLAUDE.md holds the rules the code follows.",
+        pt: "O produto vira texto antes de existir qualquer tela. O PRODUCT.md define público, tom e escopo; a especificação dá a cada fluxo seus critérios de aceite; o CLAUDE.md guarda as regras que o código segue.",
+      },
+      output: { en: "PRODUCT.md, spec, CLAUDE.md", pt: "PRODUCT.md, especificação, CLAUDE.md" },
+    },
+    {
+      space: "solution" as const,
+      name: { en: "Prototype", pt: "Prototipar" },
+      body: {
+        en: "Design tokens and clickable prototypes go in front of real users before any code. Changing course here is cheap; after the build it gets expensive.",
+        pt: "Tokens de design e protótipos navegáveis chegam à mão de usuários reais antes de qualquer código. Mudar de rumo aqui sai barato; depois da construção, fica caro.",
+      },
+      output: { en: "Design system and tested prototypes", pt: "Sistema de design e protótipos testados" },
+    },
+    {
+      space: "solution" as const,
+      name: { en: "Build", pt: "Construir" },
+      body: {
+        en: "Claude Code writes the code from those documents. Each change is a pull request with a preview link and steps to check it against the acceptance criteria. I approve every merge.",
+        pt: "O Claude Code escreve o código a partir desses documentos. Cada mudança é um pull request com link de pré-visualização e passos para conferir contra os critérios de aceite. Eu aprovo cada merge.",
+      },
+      output: { en: "Reviewed pull requests and tests", pt: "Pull requests revisados e testes" },
+    },
+    {
+      space: "solution" as const,
+      name: { en: "Ship and learn", pt: "Entregar e aprender" },
+      body: {
+        en: "I put it in front of real users and follow the outcome metric next to what people actually do in the product. The gap between the number and the behavior feeds the next round of discovery.",
+        pt: "Coloco na mão de usuários reais e acompanho a métrica de resultado ao lado do que as pessoas fazem de fato no produto. A distância entre o número e o comportamento alimenta a próxima rodada de descoberta.",
+      },
+      output: { en: "Working product, usage data, next questions", pt: "Produto funcionando, dados de uso, próximas perguntas" },
+    },
+  ] as {
+    space: "problem" | "solution";
+    name: T;
+    body?: T;
+    lanes?: { label: T; body: T }[];
+    output: T;
+  }[],
+  processLoop: { en: "Then back to discovery, with better questions.", pt: "Depois, de volta à descoberta, com perguntas melhores." },
   methodTitle: { en: "How every sheet is drawn", pt: "Como cada folha é desenhada" },
   method: [
     {

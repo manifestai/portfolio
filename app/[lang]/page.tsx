@@ -29,6 +29,43 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <HeroBoard lang={lang} />
           </section>
 
+          <section className="process" id="process" aria-labelledby="process-title">
+            <p className="kicker">{t(ui.processKicker, lang)}</p>
+            <h2 id="process-title" className="h-section">{t(ui.processTitle, lang)}</h2>
+            <p className="lede process-lede">{t(ui.processLede, lang)}</p>
+            <ol className="phases">
+              {ui.process.map((ph, i) => (
+                <li key={i} className={`card phase ${ph.space}${i === 0 || i === ui.process.length - 1 ? " wide" : ""}`}>
+                  <div className="phase-top">
+                    <span className="step-n" aria-hidden="true">{i + 1}</span>
+                    <span className={`space-tag ${ph.space}`}>{t(ui.spaces[ph.space], lang)}</span>
+                  </div>
+                  <h3>{t(ph.name, lang)}</h3>
+                  {ph.lanes ? (
+                    <div className="lanes">
+                      {ph.lanes.map((ln, j) => (
+                        <div key={j} className="lane">
+                          <p className="lane-label">{t(ln.label, lang)}</p>
+                          <p>{t(ln.body, lang)}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    ph.body && <p>{t(ph.body, lang)}</p>
+                  )}
+                  <p className="phase-out">
+                    <span>{t(ui.outputLabel, lang)}</span>
+                    {t(ph.output, lang)}
+                  </p>
+                </li>
+              ))}
+              <li className="loop">
+                <span className="loop-icon" aria-hidden="true">&#8634;</span>
+                <p>{t(ui.processLoop, lang)}</p>
+              </li>
+            </ol>
+          </section>
+
           <section className="method" id="method" aria-labelledby="method-title">
             <h2 id="method-title" className="h-section">{t(ui.methodTitle, lang)}</h2>
             <ol className="steps">

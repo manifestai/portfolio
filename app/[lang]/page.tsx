@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ui, products, t, type Lang } from "@/lib/content";
 import { Header, Footer } from "@/components/Chrome";
 import HeroBoard from "@/components/HeroBoard";
-import ProcessExplorer from "@/components/ProcessExplorer";
+import ProcessModes from "@/components/ProcessModes";
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: l } = await params;
@@ -34,8 +34,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <p className="kicker">{t(ui.processKicker, lang)}</p>
             <h2 id="process-title" className="h-section">{t(ui.processTitle, lang)}</h2>
             <p className="lede process-lede">{t(ui.processLede, lang)}</p>
-            <ProcessExplorer
-              phases={ui.process.map((ph, i) => {
+            <ProcessModes
+              lang={lang}
+              explorer={{
+              phases: ui.process.map((ph, i) => {
                 const m = i >= 2 ? ui.method[i - 2] : undefined;
                 const stage = ["think", "system", "build", "run"][i - 2] as "think" | "system" | "build" | "run" | undefined;
                 return {
@@ -63,8 +65,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                         }
                       : undefined,
                 };
-              })}
-              labels={{
+              }),
+              labels: {
                 output: t(ui.outputLabel, lang),
                 open: t(ui.sheetOpen, lang),
                 kicker: t(ui.sheetKicker, lang),
@@ -72,7 +74,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 close: t(ui.sheetClose, lang),
                 hint: t(ui.sheetHint, lang),
                 loop: t(ui.processLoop, lang),
-              }}
+              },
+            }}
             />
           </section>
 

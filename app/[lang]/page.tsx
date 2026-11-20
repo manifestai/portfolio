@@ -42,14 +42,21 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                   </div>
                   <h3>{t(ph.name, lang)}</h3>
                   {ph.lanes ? (
-                    <div className="lanes">
-                      {ph.lanes.map((ln, j) => (
-                        <div key={j} className="lane">
-                          <p className="lane-label">{t(ln.label, lang)}</p>
-                          <p>{t(ln.body, lang)}</p>
-                        </div>
-                      ))}
-                    </div>
+                    <>
+                      <div className="lanes">
+                        {ph.lanes.map((ln, j) => (
+                          <div key={j} className="lane">
+                            <p className="lane-label">{t(ln.label, lang)}</p>
+                            <p>{t(ln.body, lang)}</p>
+                          </div>
+                        ))}
+                        <span className="lane-plus" aria-hidden="true">+</span>
+                      </div>
+                      <p className="equation">
+                        {t(ui.equation.business, lang)} <span>+</span> {t(ui.equation.use, lang)} <span>=</span>{" "}
+                        <b>{t(ui.equation.product, lang)}</b>
+                      </p>
+                    </>
                   ) : (
                     ph.body && <p>{t(ph.body, lang)}</p>
                   )}

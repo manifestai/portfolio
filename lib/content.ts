@@ -49,14 +49,19 @@ export const ui = {
     pt: "Da pergunta do negócio ao produto funcionando",
   },
   processLede: {
-    en: "AI shortened the distance between an idea and a working product. The product work that decides which idea deserves that path stays the same. This is how I run it, end to end.",
-    pt: "A IA encurtou a distância entre uma ideia e um produto funcionando. O trabalho de produto que decide qual ideia merece esse caminho continua o mesmo. É assim que eu conduzo, de ponta a ponta.",
+    en: "AI shortened the distance between an idea and a working product. The product work that decides which idea deserves that path stays the same. Business and use carry equal weight at every step. This is how I run it, end to end.",
+    pt: "A IA encurtou a distância entre uma ideia e um produto funcionando. O trabalho de produto que decide qual ideia merece esse caminho continua o mesmo. Negócio e uso têm o mesmo peso em todas as etapas. É assim que eu conduzo, de ponta a ponta.",
   },
   spaces: {
     problem: { en: "Problem space", pt: "Espaço do problema" },
     solution: { en: "Solution space", pt: "Espaço da solução" },
   },
   outputLabel: { en: "Output", pt: "Entrega" },
+  equation: {
+    business: { en: "Business", pt: "Negócio" },
+    use: { en: "use", pt: "uso" },
+    product: { en: "product", pt: "produto" },
+  },
   process: [
     {
       space: "problem" as const,
@@ -70,7 +75,7 @@ export const ui = {
           },
         },
         {
-          label: { en: "User", pt: "Usuário" },
+          label: { en: "Use", pt: "Uso" },
           body: {
             en: "With the people who will use it: interviews and watching the work as it happens today, workarounds included.",
             pt: "Com quem vai usar: entrevistas e observação do trabalho como ele acontece hoje, gambiarras incluídas.",
@@ -83,10 +88,10 @@ export const ui = {
       space: "problem" as const,
       name: { en: "Frame", pt: "Enquadrar" },
       body: {
-        en: "I cross both sides into one problem worth solving: who has it, how often, what it costs today. Then one outcome metric and a written list of what stays out.",
-        pt: "Cruzo os dois lados num único problema que vale resolver: quem tem, com que frequência, quanto custa hoje. Depois, uma métrica de resultado e uma lista escrita do que fica de fora.",
+        en: "I cross both sides into one problem worth solving: it moves the business number and removes a real pain for whoever lives it. Then one outcome metric for each side and a written list of what stays out.",
+        pt: "Cruzo os dois lados num único problema que vale resolver: ele mexe no número do negócio e tira uma dor real de quem vive o trabalho. Depois, uma métrica de resultado para cada lado e uma lista escrita do que fica de fora.",
       },
-      output: { en: "Problem statement, success metric, out of scope", pt: "Declaração do problema, métrica de sucesso, fora do escopo" },
+      output: { en: "Problem statement, business and user metrics, out of scope", pt: "Declaração do problema, métricas de negócio e de uso, fora do escopo" },
     },
     {
       space: "solution" as const,
@@ -119,8 +124,8 @@ export const ui = {
       space: "solution" as const,
       name: { en: "Ship and learn", pt: "Entregar e aprender" },
       body: {
-        en: "I put it in front of real users and follow the outcome metric next to what people actually do in the product. The gap between the number and the behavior feeds the next round of discovery.",
-        pt: "Coloco na mão de usuários reais e acompanho a métrica de resultado ao lado do que as pessoas fazem de fato no produto. A distância entre o número e o comportamento alimenta a próxima rodada de descoberta.",
+        en: "I put it in front of real users and follow the business metric next to what people actually do in the product. The gap between the number and the behavior feeds the next round of discovery.",
+        pt: "Coloco na mão de usuários reais e acompanho a métrica do negócio ao lado do que as pessoas fazem de fato no produto. A distância entre o número e o comportamento alimenta a próxima rodada de descoberta.",
       },
       output: { en: "Working product, usage data, next questions", pt: "Produto funcionando, dados de uso, próximas perguntas" },
     },
